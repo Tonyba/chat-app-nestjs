@@ -1,9 +1,14 @@
 export enum Routes {
   AUTH = 'auth',
-  USER = 'users',
+  USERS = 'users',
+  CONVERSATIONS = 'conversations',
+  MESSAGES = 'conversations/:id/messages',
 }
 
 export enum Services {
   AUTH = 'AUTH_SERVICE',
-  USERS = 'USER_SERVICE',
+  USERS = 'USERS_SERVICE',
+  CONVERSATIONS = 'CONVERSATIONS_SERVICE',
+  MESSAGES = 'MESSAGE_SERVICE',
+  GATEWAY_SESSION_MANAGER = 'GATEWAY_SESSION_MANAGER',
 }
