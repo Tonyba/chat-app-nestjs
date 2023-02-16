@@ -13,6 +13,7 @@ import { Session } from './utils/typeorm';
 
 async function bootstrap() {
   const { PORT, COOKIE_SECRET } = process.env;
+  const serverPORT = PORT || 3001;
   const app = await NestFactory.create(AppModule);
   const sessionRepository = getRepository(Session);
   app.setGlobalPrefix('api');
@@ -35,7 +36,9 @@ async function bootstrap() {
   app.use(passport.session());
 
   try {
-    await app.listen(PORT, () => console.log(`Running on Port ${PORT}`));
+    await app.listen(serverPORT, () =>
+      console.log(`Running on Port ${serverPORT}`),
+    );
   } catch (error) {
     console.log(error);
   }

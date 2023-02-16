@@ -1,10 +1,10 @@
 import { ISession } from 'connect-typeorm';
 import {
   Column,
-  Index,
-  PrimaryColumn,
   DeleteDateColumn,
   Entity,
+  Index,
+  PrimaryColumn,
 } from 'typeorm';
 
 @Entity({ name: 'sessions' })
