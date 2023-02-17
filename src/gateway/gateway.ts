@@ -33,10 +33,11 @@ export class MessagingGateway implements OnGatewayConnection {
 
   handleConnection(socket: AuthenticatedSocket, ...args: any[]) {
     console.log('New Incoming Connection');
-    if (socket.user) {
-      this.sessions.setUserSocket(socket.user.id, socket);
-      socket.emit('connected', { status: 'good' });
-    }
+    console.log(socket.user);
+
+    this.sessions.setUserSocket(socket.user.id, socket);
+
+    socket.emit('connected', { status: 'good' });
   }
 
   @SubscribeMessage('createMessage')
