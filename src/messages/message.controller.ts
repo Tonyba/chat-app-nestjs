@@ -56,5 +56,11 @@ export class MessageController {
       conversationId,
       messageId,
     });
+    this.eventEmitter.emit('message.delete', { messageId, conversationId });
+    return {
+      status: 'DELETED',
+      conversationId,
+      messageId,
+    };
   }
 }

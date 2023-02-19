@@ -56,7 +56,9 @@ export class MessageService implements IMessageService {
       .where('id = :conversationId', { conversationId: params.conversationId })
       .leftJoinAndSelect('conversation.lastMessageSent', 'lastMessageSent')
       .leftJoinAndSelect('conversation.messages', 'message')
-      .where('conversation.id = message.conversationId')
+      .where('conversation.id = :conversationId', {
+        conversationId: params.conversationId,
+      })
       .limit(5)
       .orderBy('message.createdAt', 'DESC')
       .getOne();
@@ -88,7 +90,7 @@ export class MessageService implements IMessageService {
           lastMessageSent: null,
         },
       );
-      await this.messageRepository.delete({ id: message.id });
+      return this.messageRepository.delete({ id: message.id });
     } else {
       const newLastMessage = conversation.messages[SECOND_MESSAGE_INDEX];
       await this.conversationRepository.update(
@@ -97,7 +99,7 @@ export class MessageService implements IMessageService {
           lastMessageSent: newLastMessage,
         },
       );
-      await this.messageRepository.delete({ id: message.id });
+      return this.messageRepository.delete({ id: message.id });
     }
   }
 }
